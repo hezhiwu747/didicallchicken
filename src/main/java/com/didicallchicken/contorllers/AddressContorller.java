@@ -32,11 +32,7 @@ public class AddressContorller {
     ,produces = {"application/json;charset=utf-8"})
     @ResponseBody
     public String  updateAddress(@RequestBody Address address) throws IOException {
-        boolean falg = addressService.updateAddress(address);
-        if (falg){
-         return "201";
-        }
-        return "301";
+        return addressService.updateAddress(address) ? "201" : "301";
     }
 
     //删除用户地址
@@ -44,23 +40,13 @@ public class AddressContorller {
     @ResponseBody
     public String  deleteAddress(@RequestBody Address address) throws IOException {
         Integer addressId = address.getAddressId();
-        Boolean falg = addressService.deleteById(addressId);
-        if (falg){
-            return "201";
-        }else {
-            return "301";
-        }
+        return addressService.deleteById(addressId) ? "201" : "301";
     }
 
     //添加用户收货地址
     @RequestMapping(value = "/address.do",params = "operate=addAddress",produces = {"application/json;charset=utf-8"})
     @ResponseBody
     public String  addAddress(@RequestBody Address address) throws IOException {
-//        boolean falg = addressService.addAddress(address);
-//        if (falg){
-//            return "201";
-//        }
-//        return "301";
         return addressService.addAddress(address) ? "201" : "301";
     }
 
