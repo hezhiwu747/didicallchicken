@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+    namespace：名称空间
+-->
+<mapper namespace="com.didicallchicken.mapper.AddressMapper">
+    <resultMap id="resultMapAddress" type="address">
+        <result column="address_id" property="addressId"></result>
+        <result column="user_id" property="userId"></result>
+    </resultMap>
+
+    <insert id="addAddress">
+            insert into address values (null,#{userId},#{name},#{phone},#{location});
+    </insert>
+    <update id="updateAddress">
+        update address <set>
+        <if test="name != null and name != ''">
+            `name` = #{name},
+        </if>
+        <if test="phone != null and phone != ''">
+            phone = #{phone},
+        </if>
+        <if test="location != null and  location !=''">
+            location = #{location},
+        </if>
+    </set> where address_id = #{addressId};
+    </update>
+    <delete id="deleteById">
+        delete from address
+        where address_id=#{addressId};
+    </delete>
+    <select id="selectAddressByUser" resultMap="resultMapAddress">
+        SELECT * FROM address addr INNER JOIN tb_user tbu
+        ON addr.user_id = tbu.user_id
+        WHERE addr.user_id = #{userId};
+    </select>
+    <select id="searchAddressId" resultMap="resultMapAddress">
+        select * from address
+        where address_id = #{addressId};
+    </select>
+</mapper>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+    namespace：名称空间
+-->
+<mapper namespace="com.didicallchicken.mapper.OrderDetalisMapper">
+    <resultMap id="resultMapOrderDetalis" type="orderDetalis">
+        <result column="goods_id" property="goodsId"/>
+        <result column="detail_id" property="detailId"></result>
+        <result column="order_id" property="orderId"></result>
+        <result column="total_price" property="totalPrice"></result>
+    </resultMap>
+    <insert id="insertOrderDetali">
+        insert into order_details values (null,#{orderId},#{goodsId},#{quantity},#{totalPrice});
+    </insert>
+    <select id="selectAllByOrderId" resultMap="resultMapOrderDetalis">
+        select * from order_details
+        where order_id = #{orderId};
+    </select>
+    <select id="getGoodsName" resultType="java.lang.String">
+        select goods_name from goods
+        where goods_id = #{goodsId};
+    </select>
+    <select id="getGoodsImg" resultType="java.lang.String">
+        select goods_img from goods
+        where goods_id = #{goodsId};
+    </select>
+
+</mapper>

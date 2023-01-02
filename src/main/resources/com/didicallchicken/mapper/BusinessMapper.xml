@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+    namespace：名称空间
+-->
+<mapper namespace="com.didicallchicken.mapper.BusinessMapper">
+        <resultMap id="resultMapBusiness" type="business">
+            <result property="businessId" column="business_id"></result>
+            <result column="business_name" property="businessName"></result>
+            <result column="bus_img" property="busImg"></result>
+            <result column="monthly_sales" property="monthlySales"></result>
+        </resultMap>
+    <select id="selectBusinessByType" resultMap="resultMapBusiness">
+            select * from business
+            where FIND_IN_SET(#{types},`type`);
+    </select>
+    <select id="searchBusByName" resultMap="resultMapBusiness">
+         	Select DISTINCT b.business_id,business_name,grade,description,`type`,bus_img,monthly_sales
+            FROM business b
+            INNER JOIN goods g ON b.business_id = g.business_id
+            WHERE b.business_name like #{name} or g.goods_name like #{name};
+    </select>
+</mapper>
