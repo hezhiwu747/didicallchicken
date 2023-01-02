@@ -84,12 +84,8 @@ public class UserContorller{
         @ResponseBody
         public String  updatePassword(@RequestBody User user) throws IOException {
             //用户修改密码成功的标识
-            boolean falg = userService.updatePassword(user);
-            if (falg){
-                //响应201代表修改密码成功了
-                return "201";
-            }
-            return "301";
+            //响应201代表修改昵称成功了
+            return userService.updatePassword(user) ? "201" : "301";
 
         }
         //修改用户昵称
@@ -97,12 +93,8 @@ public class UserContorller{
         @ResponseBody
         public String  updateName(@RequestBody User user) throws IOException {
             //用户修改密码成功的标识
-            boolean falg = userService.updateName(user);
-            if (falg){
-                //响应201代表修改昵称成功了
-                return "201";
-            }
-            return "301";
+             //响应201代表修改昵称成功了
+            return userService.updateName(user) ? "201" : "301";
         }
 
 

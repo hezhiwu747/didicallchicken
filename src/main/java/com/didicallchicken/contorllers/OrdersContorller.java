@@ -45,11 +45,13 @@ public class OrdersContorller {
     @RequestMapping(value = "/orders.do",params = "operate=buy",produces = {"application/json;charset=utf-8"})
     @ResponseBody
     public String  buy(@RequestBody Orders<OrderDetalis> order) throws IOException {
-        boolean falg = ordersService.insertOrder(order);
-        if (falg) {
-           return "201";
-        }
-        return "301";
+//        boolean falg = ordersService.insertOrder(order);
+//        if (falg) {
+//           return "201";
+//        }
+//        return "301";
+        return  ordersService.insertOrder(order) ? "201" : "301";
+
     }
 
 }
