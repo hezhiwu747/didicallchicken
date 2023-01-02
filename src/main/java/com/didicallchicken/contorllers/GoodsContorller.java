@@ -24,16 +24,13 @@ public class GoodsContorller {
     @RequestMapping(value = "/goods.do",params = "operate=selectAllByBusiness",produces = {"application/json;charset=utf-8"})
     @ResponseBody
     public  List<Goods> selectAllByBusiness(@RequestBody Business business) throws IOException {
-            Integer businessId=business.getBusinessId();
-            List<Goods> goodsList = goodsService.selectByBusinessId(businessId);
-            return goodsList;
+            return goodsService.selectByBusinessId(business.getBusinessId());
     }
 
     //查看单个商品？？？？？？？
     @RequestMapping(value = "/goods.do",params = "operate=selectGoods")
     @ResponseBody
     public Goods selectGoods(Integer goodsId) throws IOException {
-            Goods goods = goodsService.selectAllByGoodsId(goodsId);
-            return goods;
+            return goodsService.selectAllByGoodsId(goodsId);
     }
 }

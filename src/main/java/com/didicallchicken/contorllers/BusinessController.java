@@ -22,8 +22,7 @@ public class BusinessController {
     @RequestMapping(value = "/business.do",params = "operate=selectAll")
     @ResponseBody
     public List<Business> selectAll() throws IOException {
-        List<Business> businesses = businessService.selectAll();
-        return businesses;
+        return businessService.selectAll();
     }
 
     /**
@@ -33,15 +32,13 @@ public class BusinessController {
     @RequestMapping(value = "/business.do",params = "operate=selectByTarget")
     @ResponseBody
     public List<Business> selectByTarget(@RequestParam("target") String target) throws IOException {
-        List<Business> businesses = businessService.selectBusinessByType(target);
-        return businesses;
+        return businessService.selectBusinessByType(target);
     }
 
     //根据商家和商品名称搜索
     @RequestMapping(value = "/business.do",params = "operate=search")
     @ResponseBody
     public  List<Business> search(@RequestParam("name") String name) throws IOException {
-        List<Business> businesses = businessService.searchBusByName(name);
-        return businesses;
+        return businessService.searchBusByName(name);
     }
 }
